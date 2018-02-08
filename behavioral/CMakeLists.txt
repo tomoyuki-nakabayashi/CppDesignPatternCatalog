@@ -1,0 +1,2 @@
+cmake_minimum_required(VERSION 2.8)
+cxx_executable(active_object active_object gtests_main active_object/active_object.cpp)

@@ -2,6 +2,7 @@
 // This software is released under the MIT License, see LICENSE.
 
 #include <gtest/gtest.h>
+#include <command.h>
 
 namespace active_object_test {
 class ActiveObjectTest : public ::testing::Test {

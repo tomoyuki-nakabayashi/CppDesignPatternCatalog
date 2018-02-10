@@ -7,6 +7,7 @@
 #include <command.h>
 #include <active_object_engine.h>
 #include <chrono>
+#include <functional>
 
 namespace active_object {
 class WakeUpCommand : public Command {
@@ -19,6 +20,7 @@ class WakeUpCommand : public Command {
     bool executed;
 };
 
+using time_point = std::chrono::system_clock::time_point;
 class SleepCommand : public Command {
  public:
     explicit SleepCommand(ActiveObjectEngine* = nullptr,
@@ -27,11 +29,14 @@ class SleepCommand : public Command {
     ~SleepCommand() = default;
     void Execute() override;
  private:
+    void ExecuteAtStart();
+    void ExecuteAfterStarted();
+ private:
+    std::function<void()> executor_;
     ActiveObjectEngine *engine_;
     Command *wakeup_command_;
     const int sleep_time_;
-    std::chrono::system_clock::time_point start_time_;
-    bool started_;
+    time_point start_time_;
 };
 }  // namespace active_object
 #endif  // BEHAVIORAL_ACTIVE_OBJECT_SLEEP_COMMAND_H_

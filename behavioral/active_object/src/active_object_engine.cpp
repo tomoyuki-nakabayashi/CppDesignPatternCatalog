@@ -10,7 +10,8 @@ void ActiveObjectEngine::AddCommand(Command *c) {
 }
 
 void ActiveObjectEngine::Run() {
-  for (auto& c : commands_) {
+  while (!commands_.empty()) {
+    auto c = commands_.front();
     commands_.erase(commands_.begin());
     c->Execute();
   }

@@ -29,7 +29,7 @@ class SleepCommand : public Command {
  private:
     ActiveObjectEngine *engine_;
     Command *wakeup_command_;
-    const std::chrono::system_clock::time_point sleep_time_;
+    const int sleep_time_;
     std::chrono::system_clock::time_point start_time_;
     bool started_;
 };
